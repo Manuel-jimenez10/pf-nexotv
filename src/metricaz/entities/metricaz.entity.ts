@@ -1,7 +1,26 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@ObjectType()
+@Entity({
+  name: 'METRICAZ'
+})
 export class Metricaz {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+
+  @Column({
+    type: 'int'
+  })
+  cantidad_usuarios_registrados: number;
+
+  @Column({
+    type: 'int'
+  })
+  cantidad_usuarios_premium: number;
+
+  @Column({
+    type: 'int'
+  })
+  cantidad_usuarios_free: number;
 }

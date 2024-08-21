@@ -1,7 +1,21 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Contenido } from 'src/contenidos/entities/contenido.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@ObjectType()
+@Entity()
 export class ViewingsHistory {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+ @PrimaryGeneratedColumn('uuid')
+ id: string;
+
+@ManyToOne(() => User, (user) => user.viewingHistory)
+user: User;
+
+@ManyToOne(() => Contenido, contenido => contenido.viewingHistories)
+@JoinColumn({ name: 'contenido_id' })
+contenido: Contenido;
+
+@Column({
+  type: 'date'
+})
+fecha_visualizacion: Date;
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ViewingsHistory } from "src/viewings-histories/entities/viewings-history.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 enum Tipo {
    CanalTv = 'canal_tv',
@@ -13,7 +14,7 @@ enum Estado {
 
 
 @Entity({
-    name: "contenido",
+    name: "CONTENIDO",
 })
 
 export class Contenido {
@@ -45,5 +46,8 @@ export class Contenido {
         enum: Estado
     })
     estado: Estado;
+
+    @OneToMany(() => ViewingsHistory, history => history.contenido)
+    viewingHistories: ViewingsHistory[];
 }
 

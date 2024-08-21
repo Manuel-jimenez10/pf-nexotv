@@ -1,7 +1,26 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@ObjectType()
+@Entity({
+  name: 'SUPPORT'
+})
 export class Support {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+@PrimaryGeneratedColumn('uuid')
+id: string;
+
+@ManyToOne(()=> User, (user) => user.support)
+@JoinColumn({name: 'user_id'})
+user: User;
+
+@Column({
+  type: 'date'
+})
+fecha_solicitud: Date;
+
+@Column({
+  type: 'varchar',
+  length: 255,
+  nullable: false
+})
+descripcion_problema: string;
 }

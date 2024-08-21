@@ -7,10 +7,10 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { ContenidosModule } from './contenidos/contenidos.module';
-import { MetricazModule } from './metricaz/metricaz.module';
 import { SuscriptionsModule } from './suscriptions/suscriptions.module';
 import { SupportsModule } from './supports/supports.module';
 import { ViewingsHistoriesModule } from './viewings-histories/viewings-histories.module';
+import { MetricazModule } from './metricaz/metricaz.module';
 
 @Module({
   imports: [
