@@ -13,7 +13,7 @@ export class User {
   email: string;
 
   @Column('text', { nullable: false })
-  @Field(() => String)
+  //@Field(() => String)
   password: string;
 
   @Column('text', { nullable: false })
@@ -24,15 +24,13 @@ export class User {
   @Field(() => [String])
   subscription: string[];
 
-  @Column('text', { array: true })
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   views?: string[];
 
-  @Column('text', { array: true })
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   favorites?: string[];
 
   @Column('text', { array: true, default: ['user'] })
   @Field(() => [String])
-  rol: string[];
+  roles: string[];
 }
