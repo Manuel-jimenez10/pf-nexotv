@@ -13,12 +13,16 @@ export class User {
   email: string;
 
   @Column('text', { nullable: false })
-  //@Field(() => String)
+  @Field(() => String)
   password: string;
 
   @Column('text', { nullable: false })
   @Field(() => String)
-  fullName: string;
+  firstName: string;
+
+  @Column('text', { nullable: false })
+  @Field(() => String)
+  lastName: string;
 
   @Column('text', { array: true, default: ['basic'] })
   @Field(() => [String])
@@ -33,4 +37,8 @@ export class User {
   @Column('text', { array: true, default: ['user'] })
   @Field(() => [String])
   roles: string[];
+
+  @Column('bool', { default: true })
+  @Field(() => Boolean)
+  isActive: boolean;
 }
