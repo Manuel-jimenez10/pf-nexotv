@@ -3,6 +3,8 @@ import { CreateUserInput, UpdateUserInput } from './dto/inputs';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
+import { PaginationArgs } from './dto/args/pagination.args';
 
 @Injectable()
 export class UsersService {
@@ -12,12 +14,20 @@ export class UsersService {
   ) {}
 
   async create(createUserInput: CreateUserInput): Promise<User> {
-    const newUser = this.usersRepository.create(createUserInput);
+    const { password, ...restData } = createUserInput;
+    const newUser = this.usersRepository.create({
+      ...restData,
+      password: bcrypt.hashSync(password, 10),
+    });
     return await this.usersRepository.save(newUser);
   }
 
-  async findAll() {
-    return await this.usersRepository.find();
+  async findAll(paginationArgs: PaginationArgs) {
+    const { limit = 10, offset = 0 } = paginationArgs;
+    return await this.usersRepository.find({
+      take: limit,
+      skip: offset,
+    });
   }
 
   async findOne(id: string) {

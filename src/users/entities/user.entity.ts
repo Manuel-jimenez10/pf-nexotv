@@ -13,7 +13,7 @@ export class User {
   email: string;
 
   @Column('text', { nullable: false })
-  @Field(() => String)
+  //@Field(() => String)
   password: string;
 
   @Column('text', { nullable: false })
