@@ -1,8 +1,10 @@
 import { Contenido } from 'src/contenidos/entities/contenido.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({
+  name: 'VIEWINGHISTORY'
+})
 export class ViewingsHistory {
  @PrimaryGeneratedColumn('uuid')
  id: string;
