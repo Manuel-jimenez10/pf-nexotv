@@ -34,15 +34,10 @@ export class UsersService {
 
   async remove(id: string): Promise<string> {
     const user = await this.findOne(id);
-    const { isActive, ...rest } = user;
-    const disabledUser = {
-      rest,
-      isActive: !isActive,
-    };
     user.isActive = false;
     const updateUser = await this.usersRepository.preload({
       id,
-      ...disabledUser,
+      ...user,
     });
     await this.usersRepository.save(updateUser);
 

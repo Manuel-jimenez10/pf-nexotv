@@ -29,7 +29,7 @@ export class UsersResolver {
     return await this.usersService.update(updateUserInput.id, updateUserInput);
   }
 
-  @Mutation(() => User)
+  @Mutation(() => String)
   async removeUser(
     @Args('id', { type: () => String }) id: string,
   ): Promise<string> {
