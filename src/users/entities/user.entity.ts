@@ -1,5 +1,25 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { Subscription } from 'src/subscription/entities/subscription.entity';
+import { Support } from 'src/support/entities/support.entity';
+import { ViewHistory } from 'src/view-history/entities/view-history.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+
+enum Roles {
+  Admin = 'admin',
+  Usuario = 'usuario',
+  SuperAdmin = 'superAdmin',
+}
+
+registerEnumType(Roles, {
+  name: 'Roles', // Nombre que se utilizará en el esquema de GraphQL
+  description: 'The roles of the users', // Opcional, descripción del enum
+});
 
 @Entity({ name: 'users' })
 @ObjectType()
@@ -24,15 +44,8 @@ export class User {
   @Field(() => String)
   lastName: string;
 
-  @Column('text', { array: true, default: ['basic'] })
-  @Field(() => [String])
-  subscription: string[];
-
   @Field(() => [String], { nullable: true })
   views?: string[];
-
-  @Field(() => [String], { nullable: true })
-  favorites?: string[];
 
   @Column('text', { array: true, default: ['user'] })
   @Field(() => [String])
@@ -41,4 +54,31 @@ export class User {
   @Column('bool', { default: true })
   @Field(() => Boolean)
   isActive: boolean;
+
+  @Field(() => Subscription) // Decorador para la relación Many-to-One con Suscription
+  @ManyToOne(() => Subscription, (subscription) => subscription.users)
+  subscription: Subscription;
+
+  @Field(() => [ViewHistory]) // Decorador para la relación One-to-Many con ViewingsHistory
+  @OneToMany(() => ViewHistory, (history) => history.user)
+  viewingHistory: ViewHistory[];
+
+  @Field(() => [Number], { nullable: true }) // Decorador para campos de tipo Array de números
+  @Column({
+    type: 'varchar',
+    array: true,
+    nullable: true,
+  })
+  favorites: number[];
+
+  @Column({
+    type: 'enum',
+    enum: Roles,
+    default: Roles.Usuario,
+  })
+  rol: Roles;
+
+  @Field(() => [Support]) // Decorador para la relación One-to-Many con Support
+  @OneToMany(() => Support, (support) => support.user)
+  support: Support[];
 }
