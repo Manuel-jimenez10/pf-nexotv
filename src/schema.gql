@@ -75,7 +75,8 @@ type Query {
   metrics: [Metrics!]!
   metric(id: Int!): Metrics!
   viewHistory(id: Int!): ViewHistory!
-  support(id: Int!): Support!
+  supports: [Support!]!
+  support(id: String!): Support!
   subscription(id: Int!): Subscription!
   content(id: Int!): Content!
 }
@@ -96,8 +97,8 @@ type Mutation {
   updateViewHistory(updateViewHistoryInput: UpdateViewHistoryInput!): ViewHistory!
   removeViewHistory(id: Int!): ViewHistory!
   createSupport(createSupportInput: CreateSupportInput!): Support!
-  updateSupport(updateSupportInput: UpdateSupportInput!): Support!
-  removeSupport(id: Int!): Support!
+  updateSupport(id: String!, updateSupportInput: UpdateSupportInput!): Support!
+  removeSupport(id: String!): Support!
   createSubscription(createSubscriptionInput: CreateSubscriptionInput!): Subscription!
   updateSubscription(updateSubscriptionInput: UpdateSubscriptionInput!): Subscription!
   removeSubscription(id: Int!): Subscription!
@@ -144,14 +145,13 @@ input UpdateViewHistoryInput {
 }
 
 input CreateSupportInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  userId: String!
+  descripcion_problema: String!
 }
 
 input UpdateSupportInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  userId: String
+  descripcion_problema: String!
 }
 
 input CreateSubscriptionInput {
