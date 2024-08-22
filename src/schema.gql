@@ -25,8 +25,8 @@ type Content {
   id: ID!
   titulo: String!
   descripcion: String!
-  tipo: Tipo!
-  estado: Estado!
+  tipo: Tipo
+  estado: Estado
   viewingHistories: [ViewHistory!]
 }
 
@@ -78,7 +78,8 @@ type Query {
   supports: [Support!]!
   support(id: String!): Support!
   subscription(id: Int!): Subscription!
-  content(id: Int!): Content!
+  contentAll: [Content!]!
+  contentOne(id: String!): Content!
 }
 
 input PaginationArgs {
@@ -166,12 +167,15 @@ input UpdateSubscriptionInput {
 }
 
 input CreateContentInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  titulo: String!
+  descripcion: String!
+  tipo: Tipo!
+  estado: Estado!
 }
 
 input UpdateContentInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  titulo: String
+  descripcion: String
+  tipo: Tipo
+  estado: Estado
 }

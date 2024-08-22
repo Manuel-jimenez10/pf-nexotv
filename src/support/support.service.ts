@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Support } from './entities/support.entity';
-import { CreateSupportInput, UpdateSupportInput } from './dto/inputs'; 
+import { CreateSupportInput, UpdateSupportInput } from './dto/inputs';
 import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
@@ -20,7 +20,9 @@ export class SupportService {
     });
 
     if (!user) {
-      throw new NotFoundException(`User with ID ${createSupportDto.userId} not found`);
+      throw new NotFoundException(
+        `User with ID ${createSupportDto.userId} not found`,
+      );
     }
 
     const support = this.supportRepository.create({
@@ -37,7 +39,10 @@ export class SupportService {
   }
 
   async findOne(id: string): Promise<Support> {
-    const support = await this.supportRepository.findOne({ where: { id }, relations: ['user'] });
+    const support = await this.supportRepository.findOne({
+      where: { id },
+      relations: ['user'],
+    });
 
     if (!support) {
       throw new NotFoundException(`Support request with ID ${id} not found`);
@@ -46,7 +51,10 @@ export class SupportService {
     return support;
   }
 
-  async update(id: string, updateSupportDto: UpdateSupportInput): Promise<Support> {
+  async update(
+    id: string,
+    updateSupportDto: UpdateSupportInput,
+  ): Promise<Support> {
     const support = await this.findOne(id);
 
     Object.assign(support, updateSupportDto);
