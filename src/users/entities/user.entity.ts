@@ -51,7 +51,7 @@ export class User {
   @Field(() => [String])
   roles: string[];
 
-  @Column('bool', { default: true })
+  @Column({ type: 'boolean', default: true })
   @Field(() => Boolean)
   isActive: boolean;
 

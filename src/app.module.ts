@@ -11,6 +11,7 @@ import { ViewHistoryModule } from './view-history/view-history.module';
 import { SupportModule } from './support/support.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { ContentModule } from './content/content.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ContentModule } from './content/content.module';
     SupportModule,
     SubscriptionModule,
     ContentModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

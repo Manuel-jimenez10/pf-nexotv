@@ -22,7 +22,7 @@ export class UsersService {
     return await this.usersRepository.save(newUser);
   }
 
-  async findAll(paginationArgs: PaginationArgs) {
+  async findAll(paginationArgs: PaginationArgs): Promise<User[]> {
     const { limit = 10, offset = 0 } = paginationArgs;
     return await this.usersRepository.find({
       take: limit,
@@ -30,7 +30,7 @@ export class UsersService {
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<User> {
     const user = await this.usersRepository.findOneBy({ id });
     if (!user) throw new NotFoundException(`User with id: ${id} not found`);
     return user;
