@@ -15,8 +15,13 @@ type User {
 }
 
 type Query {
-  users: [User!]!
+  users(paginationArgs: PaginationArgs!): [User!]!
   user(id: String!): User!
+}
+
+input PaginationArgs {
+  limit: Int
+  offset: Int
 }
 
 type Mutation {
