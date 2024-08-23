@@ -69,6 +69,11 @@ type Metrics {
   cantidad_usuarios_free: Float!
 }
 
+type AuthResponse {
+  token: String!
+  user: User!
+}
+
 type Query {
   users(paginationArgs: PaginationArgs!): [User!]!
   user(id: String!): User!
@@ -106,6 +111,7 @@ type Mutation {
   createContent(createContentInput: CreateContentInput!): Content!
   updateContent(updateContentInput: UpdateContentInput!): Content!
   removeContent(id: Int!): Content!
+  signup(signupInput: SignupInput!): AuthResponse!
 }
 
 input CreateUserInput {
@@ -178,4 +184,11 @@ input UpdateContentInput {
   descripcion: String
   tipo: Tipo
   estado: Estado
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
 }
