@@ -11,9 +11,9 @@ import {
 } from 'typeorm';
 
 enum Roles {
-  Admin = 'admin',
-  Usuario = 'usuario',
-  SuperAdmin = 'superAdmin',
+  admin = 'admin',
+  user = 'user',
+  superUser = 'superUser',
 }
 
 registerEnumType(Roles, {
@@ -74,7 +74,7 @@ export class User {
   @Column({
     type: 'enum',
     enum: Roles,
-    default: Roles.Usuario,
+    default: Roles.user,
   })
   rol: Roles;
 
