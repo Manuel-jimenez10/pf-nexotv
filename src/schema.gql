@@ -85,6 +85,7 @@ type Query {
   subscription(id: Int!): Subscription!
   contentAll: [Content!]!
   contentOne(id: String!): Content!
+  revalite: AuthResponse!
 }
 
 input PaginationArgs {
@@ -112,6 +113,7 @@ type Mutation {
   updateContent(updateContentInput: UpdateContentInput!): Content!
   removeContent(id: Int!): Content!
   signup(signupInput: SignupInput!): AuthResponse!
+  login(loginInput: LoginInput!): AuthResponse!
 }
 
 input CreateUserInput {
@@ -191,4 +193,9 @@ input SignupInput {
   password: String!
   firstName: String!
   lastName: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
