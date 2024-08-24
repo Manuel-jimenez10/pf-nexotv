@@ -71,13 +71,6 @@ export class User {
   })
   favorites: number[];
 
-  @Column({
-    type: 'enum',
-    enum: Roles,
-    default: Roles.user,
-  })
-  rol: Roles;
-
   @Field(() => [Support]) // Decorador para la relación One-to-Many con Support
   @OneToMany(() => Support, (support) => support.user)
   support: Support[];
