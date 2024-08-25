@@ -133,6 +133,9 @@ type Mutation {
   removeContent(id: Int!): Content!
   signup(signupInput: SignupInput!): AuthResponse!
   login(loginInput: LoginInput!): AuthResponse!
+
+  """Ejecuta la construccion de la base de datos"""
+  executeSeed: Boolean!
 }
 
 input CreateUserInput {

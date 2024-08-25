@@ -4,8 +4,11 @@ import { ContentService } from './content.service';
 import { CreateContentInput } from './dto/inputs/create-content.input';
 import { UpdateContentInput } from './dto/inputs/update-content.input';
 import { PaginationContentArgs } from './dto/args/pagination-content.args';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guards';
 
 @Resolver(() => Content)
+@UseGuards(JwtAuthGuard)
 export class ContentResolver {
   constructor(private readonly contentService: ContentService) {}
 

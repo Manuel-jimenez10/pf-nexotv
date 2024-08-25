@@ -12,6 +12,7 @@ import { SupportModule } from './support/support.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { ContentModule } from './content/content.module';
 import { AuthModule } from './auth/auth.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { AuthModule } from './auth/auth.module';
     SubscriptionModule,
     ContentModule,
     AuthModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [],
