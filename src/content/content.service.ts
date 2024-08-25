@@ -2,9 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Content } from './entities/content.entity';
-import { Estado, Tipo } from 'src/enums/content.enum';
-import { CreateContentInput } from './dto/create-content.input';
-import { UpdateContentInput } from './dto/update-content.input';
+import { CreateContentInput } from './dto/inputs/create-content.input';
+import { UpdateContentInput } from './dto/inputs/update-content.input';
+import { Status, Type } from './dto/enums/content.enum';
 
 @Injectable()
 export class ContentService {
@@ -62,12 +62,12 @@ export class ContentService {
   }
 
   // Buscar contenidos por tipo
-  async findByTipo(tipo: Tipo): Promise<Content[]> {
-    return this.contenidoRepository.find({ where: { tipo } });
+  async findByTipo(type: Type): Promise<Content[]> {
+    return this.contenidoRepository.find({ where: { type } });
   }
 
   // Buscar contenidos por estado
-  async findByEstado(estado: Estado): Promise<Content[]> {
-    return this.contenidoRepository.find({ where: { estado } });
+  async findByEstado(status: Status): Promise<Content[]> {
+    return this.contenidoRepository.find({ where: { status } });
   }
 }

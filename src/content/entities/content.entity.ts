@@ -1,48 +1,65 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Estado, Tipo } from 'src/enums/content.enum';
 import { ViewHistory } from 'src/view-history/entities/view-history.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
+import { Status, Type } from '../dto/enums/content.enum';
 
-@ObjectType() // Decorador para convertir la clase en un tipo GraphQL
+@ObjectType()
 @Entity({
   name: 'content',
 })
 export class Content {
-  @Field(() => ID) // Decorador para el campo ID
+  @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Field() // Decorador para campos de texto
+  @Field(() => String)
   @Column({
     type: 'varchar',
-    length: 50,
+    length: 100,
   })
-  titulo: string;
+  @IsNotEmpty()
+  title: string;
 
-  @Field() // Decorador para campos de texto
-  @Column({
-    type: 'varchar',
-    length: 255,
-  })
-  descripcion: string;
+  @Field(() => String)
+  @Column('text')
+  description: string;
 
-  @Field(() => Tipo, { nullable: true }) // Decorador para enums
+  @Field(() => String, { nullable: true })
+  @Column('text', { nullable: true })
+  image?: string;
+
+  @Field(() => String)
+  @Column('text')
+  duration: string;
+
+  @Field(() => [String])
+  @Column('varchar', { array: true, default: [] })
+  category: string[];
+
+  @Field(() => Type, { nullable: true })
   @Column({
     type: 'enum',
-    enum: Tipo,
+    enum: Type,
     nullable: true,
   })
-  tipo?: Tipo;
+  type?: Type;
 
-  @Field(() => Estado, { nullable: true }) // Decorador para enums
+  @Field(() => Status, { nullable: true })
   @Column({
     type: 'enum',
-    enum: Estado,
+    enum: Status,
     nullable: true,
   })
-  estado?: Estado;
+  status?: Status;
 
-  @Field(() => [ViewHistory], { nullable: true }) // Decorador para relaciones OneToMany
-  @OneToMany(() => ViewHistory, (history) => history.contenido)
-  viewingHistories: ViewHistory[];
+  @Field(() => [String])
+  @Column('varchar', { array: true, default: [] })
+  contentUrl: string[];
+
+  @Field(() => [ViewHistory], { nullable: true })
+  @OneToMany(() => ViewHistory, (history) => history.contenido, {
+    nullable: true,
+  })
+  viewingHistories?: ViewHistory[];
 }
