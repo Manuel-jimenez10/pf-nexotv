@@ -130,7 +130,7 @@ type Mutation {
   removeSubscription(id: Int!): Subscription!
   createContent(createContentInput: CreateContentInput!): Content!
   updateContent(updateContentInput: UpdateContentInput!): Content!
-  removeContent(id: Int!): Content!
+  removeContent(id: String!): Content!
   signup(signupInput: SignupInput!): AuthResponse!
   login(loginInput: LoginInput!): AuthResponse!
 

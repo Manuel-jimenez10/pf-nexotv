@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Content } from './entities/content.entity';
 import { ContentService } from './content.service';
 import { CreateContentInput } from './dto/inputs/create-content.input';
@@ -49,7 +49,7 @@ export class ContentResolver {
 
   @Mutation(() => Content)
   removeContent(
-    @Args('id', { type: () => Int }) id: string,
+    @Args('id', { type: () => String }) id: string,
     @CurrentUser([ValidRoles.admin]) content: Content,
   ) {
     console.log(content);

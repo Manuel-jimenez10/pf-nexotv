@@ -85,8 +85,12 @@ export class ContentService {
   async remove(id: string): Promise<Content> {
     try {
       const content = await this.findOne(id);
-      await this.contenidoRepository.remove(content);
-      return content;
+      content.status = Status.inactive;
+      const updateContent = await this.contenidoRepository.preload({
+        id,
+        ...content,
+      });
+      return await this.contenidoRepository.save(updateContent);
     } catch (error) {
       this.handleDbErros(error);
     }
