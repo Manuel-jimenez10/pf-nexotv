@@ -1,10 +1,17 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Content } from './entities/content.entity';
 import { CreateContentInput } from './dto/inputs/create-content.input';
 import { UpdateContentInput } from './dto/inputs/update-content.input';
 import { Status, Type } from './dto/enums/content.enum';
+import { PaginationContentArgs } from './dto/args/pagination-content.args';
 
 @Injectable()
 export class ContentService {
@@ -13,61 +20,112 @@ export class ContentService {
     private readonly contenidoRepository: Repository<Content>,
   ) {}
 
-  // Crear un nuevo contenido
+  private logger = new Logger('ContentService');
+
   async create(createContenidoInput: CreateContentInput): Promise<Content> {
-    const newContenido = this.contenidoRepository.create(createContenidoInput);
-    return await this.contenidoRepository.save(newContenido);
-  }
-
-  // Obtener todos los contenidos con paginación
-  async findAll(skip: number = 0, take: number = 10): Promise<Content[]> {
-    const content = await this.contenidoRepository.find({
-      skip,
-      take,
-    });
-    return content;
-  }
-
-  // Obtener un contenido por ID
-  async findOne(id: string): Promise<Content> {
-    const contenido = await this.contenidoRepository.findOne({ where: { id } });
-    if (!contenido) {
-      throw new NotFoundException(`Contenido with ID ${id} not found`);
+    try {
+      const newContenido =
+        this.contenidoRepository.create(createContenidoInput);
+      return await this.contenidoRepository.save(newContenido);
+    } catch (error) {
+      this.handleDbErros(error);
     }
-    return contenido;
   }
 
-  // Actualizar un contenido
+  async findAll(
+    paginationContentArgs: PaginationContentArgs,
+  ): Promise<Content[]> {
+    const { limit = 10, offset = 0 } = paginationContentArgs;
+
+    try {
+      const content = await this.contenidoRepository.find({
+        skip: offset,
+        take: limit,
+      });
+      return content;
+    } catch (error) {
+      this.handleDbErros(error);
+    }
+  }
+
+  async findOne(id: string): Promise<Content> {
+    try {
+      const contenido = await this.contenidoRepository.findOne({
+        where: { id },
+      });
+      if (!contenido) {
+        throw new NotFoundException(`Content with id: ${id} not found`);
+      }
+      return contenido;
+    } catch (error) {
+      this.handleDbErros(error);
+    }
+  }
+
   async update(
     id: string,
     updateContenidoInput: UpdateContentInput,
   ): Promise<Content> {
-    const contenido = await this.contenidoRepository.preload({
-      id,
-      ...updateContenidoInput,
-    });
+    try {
+      const contenido = await this.contenidoRepository.preload({
+        id,
+        ...updateContenidoInput,
+      });
 
-    if (!contenido) {
-      throw new NotFoundException(`Contenido with ID ${id} not found`);
+      if (!contenido) {
+        throw new NotFoundException(`Content with id: ${id} not found`);
+      }
+
+      return this.contenidoRepository.save(contenido);
+    } catch (error) {
+      this.handleDbErros(error);
     }
-
-    return this.contenidoRepository.save(contenido);
   }
 
-  // Eliminar un contenido
   async remove(id: string): Promise<Content> {
-    const contenido = await this.findOne(id);
-    await this.contenidoRepository.remove(contenido);
-    return contenido;
+    try {
+      const content = await this.findOne(id);
+      await this.contenidoRepository.remove(content);
+      return content;
+    } catch (error) {
+      this.handleDbErros(error);
+    }
   }
 
-  // Buscar contenidos por tipo
   async findByTipo(type: Type): Promise<Content[]> {
-    return this.contenidoRepository.find({ where: { type } });
+    try {
+      const content = this.contenidoRepository.find({ where: { type } });
+      if (!content) {
+        throw new NotFoundException(`Content with type: ${type} not found`);
+      }
+      return content;
+    } catch (error) {
+      this.handleDbErros(error);
+    }
   }
 
-  // Buscar contenidos por estado
   async findByEstado(status: Status): Promise<Content[]> {
-    return this.contenidoRepository.find({ where: { status } });
+    try {
+      const content = this.contenidoRepository.find({ where: { status } });
+      if (!content) {
+        throw new NotFoundException(`Content with type: ${status} not found`);
+      }
+      return content;
+    } catch (error) {
+      this.handleDbErros(error);
+    }
+  }
+
+  private handleDbErros(error: any): never {
+    console.log(error);
+    if (error.code === '23505')
+      throw new BadRequestException(error.detail.replace('Key ', ''));
+
+    if (error.code === 'error-001')
+      throw new BadRequestException(error.detail.replace('Key ', ''));
+
+    this.logger.error(error);
+
+    throw new InternalServerErrorException('Pleace check server logs');
   }
 }

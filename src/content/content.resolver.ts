@@ -3,6 +3,7 @@ import { Content } from './entities/content.entity';
 import { ContentService } from './content.service';
 import { CreateContentInput } from './dto/inputs/create-content.input';
 import { UpdateContentInput } from './dto/inputs/update-content.input';
+import { PaginationContentArgs } from './dto/args/pagination-content.args';
 
 @Resolver(() => Content)
 export class ContentResolver {
@@ -16,8 +17,10 @@ export class ContentResolver {
   }
 
   @Query(() => [Content], { name: 'contentAll' })
-  findAll() {
-    return this.contentService.findAll();
+  findAll(
+    @Args('paginationContentArgs') paginationContentArgs: PaginationContentArgs,
+  ) {
+    return this.contentService.findAll(paginationContentArgs);
   }
 
   @Query(() => Content, { name: 'contentOne' })

@@ -87,7 +87,7 @@ type Query {
   supports: [Support!]!
   support(id: String!): Support!
   subscription(id: Int!): Subscription!
-  contentAll: [Content!]!
+  contentAll(paginationContentArgs: PaginationContentArgs!): [Content!]!
   contentOne(id: String!): Content!
   revalite: AuthResponse!
 }
@@ -105,6 +105,11 @@ enum ValidRoles {
   admin
   user
   superUser
+}
+
+input PaginationContentArgs {
+  limit: Int
+  offset: Int
 }
 
 type Mutation {
