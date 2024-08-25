@@ -43,6 +43,10 @@ export class Content {
   })
   estado?: Estado;
 
+  @Field(() => [String], {nullable: true})
+  @Column("text", { array: true, nullable: true })
+  movies?: string[] 
+
   @Field(() => [ViewHistory], { nullable: true }) // Decorador para relaciones OneToMany
   @OneToMany(() => ViewHistory, (history) => history.contenido)
   viewingHistories: ViewHistory[];

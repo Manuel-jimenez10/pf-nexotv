@@ -11,10 +11,13 @@ import { ViewHistoryModule } from './view-history/view-history.module';
 import { SupportModule } from './support/support.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { ContentModule } from './content/content.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: false,
@@ -37,6 +40,7 @@ import { ContentModule } from './content/content.module';
     SupportModule,
     SubscriptionModule,
     ContentModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [],

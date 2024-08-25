@@ -27,6 +27,7 @@ type Content {
   descripcion: String!
   tipo: Tipo
   estado: Estado
+  movies: [String!]
   viewingHistories: [ViewHistory!]
 }
 
@@ -105,6 +106,8 @@ type Mutation {
   createContent(createContentInput: CreateContentInput!): Content!
   updateContent(updateContentInput: UpdateContentInput!): Content!
   removeContent(id: Int!): Content!
+  excuteSeed: Boolean!
+  preloadMovies: String!
 }
 
 input CreateUserInput {
@@ -168,6 +171,7 @@ input UpdateSubscriptionInput {
 
 input CreateContentInput {
   titulo: String!
+  movies: [String!]!
   descripcion: String!
   tipo: Tipo!
   estado: Estado!
@@ -175,6 +179,7 @@ input CreateContentInput {
 
 input UpdateContentInput {
   titulo: String
+  movies: [String!]
   descripcion: String
   tipo: Tipo
   estado: Estado

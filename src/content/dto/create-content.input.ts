@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { IsEmpty, isEmpty, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsEmpty, isEmpty, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { Estado, Tipo } from 'src/enums/content.enum';
 
 @InputType()
@@ -8,6 +8,10 @@ export class CreateContentInput {
   @IsString()
   @IsNotEmpty()
   titulo: string;
+
+  @Field(() => [String])
+  @IsArray()
+  movies: string[];
 
   @Field(() => String)
   @IsNotEmpty()
