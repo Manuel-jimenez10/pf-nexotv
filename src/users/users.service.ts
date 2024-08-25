@@ -43,23 +43,21 @@ export class UsersService {
     validRolesArgs: ValidRoles[],
   ): Promise<User[]> {
     const { limit = 10, offset = 0 } = paginationArgs;
+    try {
+      if (validRolesArgs.length === 0)
+        return await this.usersRepository.find({
+          take: limit,
+          skip: offset,
+        });
 
-    if (validRolesArgs.length === 0)
-      return await this.usersRepository.find({
-        take: limit,
-        skip: offset,
-      });
-
-    return this.usersRepository
-      .createQueryBuilder()
-      .andWhere('ARRAY[roles] && ARRAY[:...roles]')
-      .setParameter('roles', validRolesArgs)
-      .getMany();
-
-    return await this.usersRepository.find({
-      take: limit,
-      skip: offset,
-    });
+      return this.usersRepository
+        .createQueryBuilder()
+        .andWhere('ARRAY[roles] && ARRAY[:...roles]')
+        .setParameter('roles', validRolesArgs)
+        .getMany();
+    } catch (error) {
+      this.handleDbErros(error);
+    }
   }
 
   async findOne(id: string): Promise<User> {
@@ -95,21 +93,32 @@ export class UsersService {
   }
 
   async update(id: string, updateUserInput: UpdateUserInput): Promise<User> {
-    const user = await this.usersRepository.preload({ id, ...updateUserInput });
-    if (!user) throw new NotFoundException(`User with id: ${id} not found`);
-    return await this.usersRepository.save(user);
+    try {
+      const user = await this.usersRepository.preload({
+        id,
+        ...updateUserInput,
+      });
+      if (!user) throw new NotFoundException(`User with id: ${id} not found`);
+      return await this.usersRepository.save(user);
+    } catch (error) {
+      this.handleDbErros(error);
+    }
   }
 
   async remove(id: string): Promise<string> {
-    const user = await this.findOne(id);
-    user.isActive = false;
-    const updateUser = await this.usersRepository.preload({
-      id,
-      ...user,
-    });
-    await this.usersRepository.save(updateUser);
+    try {
+      const user = await this.findOne(id);
+      user.isActive = false;
+      const updateUser = await this.usersRepository.preload({
+        id,
+        ...user,
+      });
+      await this.usersRepository.save(updateUser);
 
-    return `This action removes a #${id} user`;
+      return `This action removes a #${id} user`;
+    } catch (error) {
+      this.handleDbErros(error);
+    }
   }
 
   private handleDbErros(error: any): never {
