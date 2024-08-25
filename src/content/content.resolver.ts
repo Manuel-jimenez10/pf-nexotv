@@ -6,6 +6,8 @@ import { UpdateContentInput } from './dto/inputs/update-content.input';
 import { PaginationContentArgs } from './dto/args/pagination-content.args';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guards';
+import { CurrentUser } from 'src/auth/decorator/current-user.decorator';
+import { ValidRoles } from 'src/auth/enums/valid-roles.emun';
 
 @Resolver(() => Content)
 @UseGuards(JwtAuthGuard)
@@ -15,7 +17,9 @@ export class ContentResolver {
   @Mutation(() => Content)
   createContent(
     @Args('createContentInput') createContentInput: CreateContentInput,
+    @CurrentUser([ValidRoles.admin]) content: Content,
   ) {
+    console.log(content);
     return this.contentService.create(createContentInput);
   }
 
@@ -34,7 +38,9 @@ export class ContentResolver {
   @Mutation(() => Content)
   updateContent(
     @Args('updateContentInput') updateContentInput: UpdateContentInput,
+    @CurrentUser([ValidRoles.admin]) content: Content,
   ) {
+    console.log(content);
     return this.contentService.update(
       updateContentInput.id,
       updateContentInput,
@@ -42,7 +48,11 @@ export class ContentResolver {
   }
 
   @Mutation(() => Content)
-  removeContent(@Args('id', { type: () => Int }) id: string) {
+  removeContent(
+    @Args('id', { type: () => Int }) id: string,
+    @CurrentUser([ValidRoles.admin]) content: Content,
+  ) {
+    console.log(content);
     return this.contentService.remove(id);
   }
 }

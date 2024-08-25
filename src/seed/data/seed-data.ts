@@ -101,4 +101,54 @@ export const SEED_DATA: CreateContentInput[] = [
       `<script src="https://embed.voomly.com/embed/embed-build.js"></script><div class="voomly-embed" data-id="gl6rcHgs2CdHGN4Ef5hzUhtPeWQvGSDXO5YnmEgBAMlbP3a4a" data-ratio="1.777778" data-type="v" data-skin-color="#008EFF" data-shadow="" style="width: 100%; aspect-ratio: 1.77778 / 1; background: linear-gradient(45deg, rgb(142, 150, 164) 0%, rgb(201, 208, 222) 100%); border-radius: 10px;"></div>`,
     ],
   },
+  {
+    title: 'The Lord of the Rings: The Rings of Power - Season 2 movie',
+    description:
+      'Official movie for the second season of The Rings of Power on Prime Video.',
+    image: 'https://example.com/rings-of-power-season-2.jpg',
+    duration: '2:10',
+    category: ['Fantasy', 'Adventure'],
+    type: Type.movie,
+    status: Status.active,
+    contentUrl: [
+      `<script src="https://embed.voomly.com/embed/embed-build.js"></script><div class="voomly-embed" data-id="AhqcgVWiUh7RxBVCdVxMrwMrCEixEqZiu3swsz96TKrcFB0RZ" data-ratio="1.777778" data-type="v" data-skin-color="#008EFF" data-shadow="" style="width: 100%; aspect-ratio: 1.77778 / 1; background: linear-gradient(45deg, rgb(142, 150, 164) 0%, rgb(201, 208, 222) 100%); border-radius: 10px;"></div>`,
+    ],
+  },
+  {
+    title: 'The Lord of the Rings: The War of the Rohirrim - Official movie',
+    description:
+      'Official movie for The Lord of the Rings: The War of the Rohirrim.',
+    image: 'https://example.com/war-of-the-rohirrim.jpg',
+    duration: '2:20',
+    category: ['Fantasy', 'Adventure'],
+    type: Type.movie,
+    status: Status.active,
+    contentUrl: [
+      `<script src="https://embed.voomly.com/embed/embed-build.js"></script><div class="voomly-embed" data-id="M8_D2B-3GhaK3lAaiQTIVNdkDLaCvtFMXtXKMYF2RN6raRA9K" data-ratio="1.777778" data-type="v" data-skin-color="#008EFF" data-shadow="" style="width: 100%; aspect-ratio: 1.77778 / 1; background: linear-gradient(45deg, rgb(142, 150, 164) 0%, rgb(201, 208, 222) 100%); border-radius: 10px;"></div>`,
+    ],
+  },
+  {
+    title: 'The Penguin - Official movie',
+    description: 'Official movie for The Penguin, coming to Max.',
+    image: 'https://example.com/the-penguin.jpg',
+    duration: '2:05',
+    category: ['Crime', 'Drama'],
+    type: Type.movie,
+    status: Status.active,
+    contentUrl: [
+      `<script src="https://embed.voomly.com/embed/embed-build.js"></script><div class="voomly-embed" data-id="BKXOFnF4R0VaBkRX5KkApAZjKk6sAzStW2EqWsJpDfZHRVRhL" data-ratio="1.777778" data-type="v" data-skin-color="#008EFF" data-shadow="" style="width: 100%; aspect-ratio: 1.77778 / 1; background: linear-gradient(45deg, rgb(142, 150, 164) 0%, rgb(201, 208, 222) 100%); border-radius: 10px;"></div>`,
+    ],
+  },
+  {
+    title: 'VENOM: THE LAST DANCE – Official movie',
+    description: 'Official movie for Venom: The Last Dance.',
+    image: 'https://example.com/venom-last-dance.jpg',
+    duration: '2:30',
+    category: ['Action', 'Sci-Fi'],
+    type: Type.movie,
+    status: Status.active,
+    contentUrl: [
+      `<script src="https://embed.voomly.com/embed/embed-build.js"></script><div class="voomly-embed" data-id="H1sNznPbEacfRR7MKnZhz8MMO3wLFnSWlihFQW5CSmL5bKU6L" data-ratio="1.779167" data-type="v" data-skin-color="#008EFF" data-shadow="" style="width: 100%; aspect-ratio: 1.77917 / 1; background: linear-gradient(45deg, rgb(142, 150, 164) 0%, rgb(201, 208, 222) 100%); border-radius: 10px;"></div>`,
+    ],
+  },
 ];
