@@ -12,6 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationArgs } from './dto/args/pagination.args';
 import * as bcrypt from 'bcrypt';
 import { SignupInput } from '../auth/dto/input/signup.input';
+import { ValidRoles } from 'src/auth/enums/valid-roles.emun';
 
 @Injectable()
 export class UsersService {
@@ -37,8 +38,24 @@ export class UsersService {
     }
   }
 
-  async findAll(paginationArgs: PaginationArgs): Promise<User[]> {
+  async findAll(
+    paginationArgs: PaginationArgs,
+    validRolesArgs: ValidRoles[],
+  ): Promise<User[]> {
     const { limit = 10, offset = 0 } = paginationArgs;
+
+    if (validRolesArgs.length === 0)
+      return await this.usersRepository.find({
+        take: limit,
+        skip: offset,
+      });
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .andWhere('ARRAY[roles] && ARRAY[:...roles]')
+      .setParameter('roles', validRolesArgs)
+      .getMany();
+
     return await this.usersRepository.find({
       take: limit,
       skip: offset,

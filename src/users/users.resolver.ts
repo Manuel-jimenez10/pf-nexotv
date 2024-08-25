@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput, UpdateUserInput } from './dto/inputs';
 import { PaginationArgs } from './dto/args/pagination.args';
+import { ValidRolesArgs } from './dto/args/roles.args';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -18,8 +19,13 @@ export class UsersResolver {
   @Query(() => [User], { name: 'users' })
   async findAll(
     @Args('paginationArgs') paginationArgs: PaginationArgs,
+    @Args('validRolesArgs') validRolesArgs: ValidRolesArgs,
   ): Promise<User[]> {
-    return await this.usersService.findAll(paginationArgs);
+    console.log(validRolesArgs);
+    return await this.usersService.findAll(
+      paginationArgs,
+      validRolesArgs.roles,
+    );
   }
 
   @Query(() => User, { name: 'user' })

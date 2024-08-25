@@ -75,7 +75,7 @@ type AuthResponse {
 }
 
 type Query {
-  users(paginationArgs: PaginationArgs!): [User!]!
+  users(paginationArgs: PaginationArgs!, validRolesArgs: ValidRolesArgs!): [User!]!
   user(id: String!): User!
   metrics: [Metrics!]!
   metric(id: Int!): Metrics!
@@ -91,6 +91,16 @@ type Query {
 input PaginationArgs {
   limit: Int
   offset: Int
+}
+
+input ValidRolesArgs {
+  roles: [ValidRoles!] = []
+}
+
+enum ValidRoles {
+  admin
+  user
+  superUser
 }
 
 type Mutation {
