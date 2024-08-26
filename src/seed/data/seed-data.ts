@@ -6,7 +6,8 @@ export const SEED_DATA: CreateContentInput[] = [
     title: 'Arcane Season 2: Official Teaser movie',
     description:
       'Teaser movie for the highly anticipated second season of Arcane.',
-    image: 'https://example.com/arcane-season-2.jpg', // Example image URL
+    image:
+      'https://m.media-amazon.com/images/M/MV5BNWE5Y2JmZjUtZDlhZS00Njg3LWJlODUtMjhmMGFjYzZmNmU0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     duration: '2:15',
     category: ['Animation', 'Fantasy', 'Action'],
     type: Type.movie,
@@ -18,7 +19,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'Blanca Nieves: Tráiler Oficial',
     description: 'Official movie of the new Snow White movie.',
-    image: 'https://example.com/blanca-nieves.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BMjQ1YWZlMTMtNzc4ZC00N2UwLTk1N2YtMGMyYTIwODk5MzU4XkEyXkFqcGc@._V1_.jpg',
     duration: '1:45',
     category: ['Drama', 'Fantasy'],
     type: Type.movie,
@@ -28,10 +30,11 @@ export const SEED_DATA: CreateContentInput[] = [
     ],
   },
   {
-    title: 'Coming to Max in 2024-2025',
+    title: 'The Penguin',
     description:
       'Teaser for active series like The Penguin, The White Lotus, and The Last of Us on Max.',
-    image: 'https://example.com/max-2024-2025.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BYmU3MzYzOWEtOTdkZi00YzA1LTliMzQtNDdiZDBjY2FiNmFlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     duration: '2:30',
     category: ['Drama', 'Thriller'],
     type: Type.movie,
@@ -43,7 +46,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'Deadpool & Wolverine: Tráiler Oficial',
     description: 'Official movie of Deadpool and Wolverine.',
-    image: 'https://example.com/deadpool-wolverine.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BNDg5ZmVmZDUtNGYzMC00ZWZlLWFmMDAtMTk3NzMzN2NiMWY5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     duration: '2:05',
     category: ['Action', 'Comedy'],
     type: Type.movie,
@@ -56,7 +60,8 @@ export const SEED_DATA: CreateContentInput[] = [
     title: 'Hellboy: The Crooked Man - Official movie',
     description:
       'Official movie of Hellboy: The Crooked Man, premiering at Comic Con 2024.',
-    image: 'https://example.com/hellboy.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BMWZmMGI1ZTctN2IxMC00MTczLWIyN2UtMTMyZDM4Njc5MjY0XkEyXkFqcGdeQXVyMTYzMDM0NTU@._V1_FMjpg_UX1000_.jpg',
     duration: '2:20',
     category: ['Fantasy', 'Action'],
     type: Type.movie,
@@ -68,7 +73,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'Joker: Folie À Deux - Official movie',
     description: 'Official movie for Joker: Folie À Deux.',
-    image: 'https://example.com/joker-folie-a-deux.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BNTRlNmU1NzEtODNkNC00ZGM3LWFmNzQtMjBlMWRiYTcyMGRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     duration: '2:30',
     category: ['Drama', 'Thriller'],
     type: Type.movie,
@@ -80,7 +86,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'Mufasa: El Rey León - Tráiler Oficial',
     description: 'Official movie of Mufasa: El Rey León.',
-    image: 'https://example.com/mufasa.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BMmMzNDhlZDgtMGU4Mi00MzRiLWI4ODAtNzY0MGY2ZWZiZWI5XkEyXkFqcGdeQXVyMzUxNTM4ODc@._V1_FMjpg_UX1000_.jpg',
     duration: '2:00',
     category: ['Animation', 'Drama'],
     type: Type.movie,
@@ -92,7 +99,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'Secret Level - Teaser movie',
     description: "Teaser movie for Prime Video's active series, Secret Level.",
-    image: 'https://example.com/secret-level.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BODliZTk4YTQtY2NhNS00NmQxLWE1MTAtYTVlOWQ2NTU1NWFjXkEyXkFqcGdeQXVyMTYzMDM0NTU@._V1_FMjpg_UX1000_.jpg',
     duration: '1:50',
     category: ['Thriller', 'Sci-Fi'],
     type: Type.movie,
@@ -105,7 +113,8 @@ export const SEED_DATA: CreateContentInput[] = [
     title: 'The Lord of the Rings: The Rings of Power - Season 2 movie',
     description:
       'Official movie for the second season of The Rings of Power on Prime Video.',
-    image: 'https://example.com/rings-of-power-season-2.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BNjIwZjQ5YTctZDg0ZS00YTI0LTk5YjEtYzVmYTJmYzRiNGUyXkEyXkFqcGdeQXVyNTI4MzE4MDU@._V1_FMjpg_UX1000_.jpg',
     duration: '2:10',
     category: ['Fantasy', 'Adventure'],
     type: Type.movie,
@@ -118,7 +127,8 @@ export const SEED_DATA: CreateContentInput[] = [
     title: 'The Lord of the Rings: The War of the Rohirrim - Official movie',
     description:
       'Official movie for The Lord of the Rings: The War of the Rohirrim.',
-    image: 'https://example.com/war-of-the-rohirrim.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BYjI1NTMzNjgtYjFmOS00YzFjLTg3MTEtMDgxZTcwZTE2NDM2XkEyXkFqcGdeQXVyMTUyNjc3NDQ4._V1_FMjpg_UX1000_.jpg',
     duration: '2:20',
     category: ['Fantasy', 'Adventure'],
     type: Type.movie,
@@ -130,7 +140,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'The Penguin - Official movie',
     description: 'Official movie for The Penguin, coming to Max.',
-    image: 'https://example.com/the-penguin.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BYmU3MzYzOWEtOTdkZi00YzA1LTliMzQtNDdiZDBjY2FiNmFlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
     duration: '2:05',
     category: ['Crime', 'Drama'],
     type: Type.movie,
@@ -142,7 +153,8 @@ export const SEED_DATA: CreateContentInput[] = [
   {
     title: 'VENOM: THE LAST DANCE – Official movie',
     description: 'Official movie for Venom: The Last Dance.',
-    image: 'https://example.com/venom-last-dance.jpg',
+    image:
+      'https://m.media-amazon.com/images/M/MV5BODAxMDNhYWMtYWUzNS00ZTY3LThmZDUtODRjMTdhM2Y5ZGEwXkEyXkFqcGdeQXVyMTYzMDM0NTU@._V1_FMjpg_UX1000_.jpg',
     duration: '2:30',
     category: ['Action', 'Sci-Fi'],
     type: Type.movie,
