@@ -44,6 +44,10 @@ export class User {
   @Field(() => String)
   lastName: string;
 
+  @Column('text', { array: true, default: [] })
+  @Field(() => [String], { nullable: true })
+  userImage?: string[];
+
   @Field(() => [String], { nullable: true })
   views?: string[];
 

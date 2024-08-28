@@ -57,6 +57,7 @@ type User {
   email: String!
   firstName: String!
   lastName: String!
+  userImage: [String!]
   views: [String!]
   roles: [String!]!
   isActive: Boolean!
